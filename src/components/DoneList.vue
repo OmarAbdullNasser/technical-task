@@ -1,18 +1,33 @@
 <template>
   <div class="DoneTasks py-2">
-    <h5 class="text-start mb-2">Done - 1</h5>
-    <div
-      class="Donetask p-4 ms-lg-4 ms-0 my-3 d-flex justify-content-between align-items-center rounded flex-column flex-lg-row"
-    >
-      <p class="m-0 my-3 my-lg-0 text-decoration-line-through">
-        To study React fundamentals
-      </p>
-    </div>
+    <h5 class="text-start mb-2">Done - {{ DoneList.length }}</h5>
+    <SingleTask
+      v-for="(n, i) in DoneList"
+      :key="n"
+      :title="DoneList[i].title"
+      :compelete="DoneList[i].compelete"
+    />
   </div>
 </template>
 
 <script>
-export default {}
+import SingleTask from './SinlgeTask.vue'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+export default {
+  components: {
+    SingleTask,
+  },
+  props: ['DoneTasks'],
+  setup() {
+    const store = useStore()
+    const DoneList = computed(() => {
+      return store.state.DoneTasks
+    })
+
+    return { DoneList }
+  },
+}
 </script>
 
 <style lang="scss">

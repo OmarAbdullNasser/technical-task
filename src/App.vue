@@ -12,14 +12,14 @@
             class="form-control me-lg-3 mb-3 mb-lg-0"
             v-model="Task"
           />
-          <button type="button" class="btn flex-grow-1" @click="SayHiWhenClick">
+          <button type="button" class="btn flex-grow-1" @click="AddTask">
             <font-awesome-icon icon="plus" size="2x" />
           </button>
         </div>
         <!--Input Form-->
 
         <!--List of uncomplete Tasks-->
-        <TasksList :Tasks="Tasks" />
+        <TasksList />
         <!--List of uncomplete Tasks-->
 
         <!--List of complete Tasks-->
@@ -33,6 +33,8 @@
 <script>
 import TasksList from './components/TasksList.vue'
 import DoneList from './components/DoneList.vue'
+import { useStore } from 'vuex'
+
 import { ref } from 'vue'
 export default {
   name: 'App',
@@ -40,25 +42,19 @@ export default {
     TasksList,
     DoneList,
   },
-  // props: {
-  //   message: String,
-  // },
+
   setup() {
+    const store = useStore()
     const Task = ref('')
-    const Tasks = ref([
-      { title: 'To study React fundamentals', compelete: false },
-      { title: 'To study React fundamentals', compelete: false },
-      { title: 'To study React fundamentals', compelete: false },
-      { title: 'To study React fundamentals', compelete: false },
-      { title: 'To study React fundamentals', compelete: false },
-    ])
-    const SayHiWhenClick = () => {
-      Tasks.value.push({ title: Task.value.toString(), compelete: false })
+    function AddTask() {
+      store.commit(
+        'AddTask',
+        `{ title: ${Task.value.toString()}, compelete: false }`,
+      )
     }
     return {
       Task,
-      Tasks,
-      SayHiWhenClick,
+      AddTask,
     }
   },
 }

@@ -1,11 +1,11 @@
 <template>
   <div class="Tasks py-2">
-    <h5 class="text-start mb-2">Tasks to do - {{ Tasks.length }}</h5>
+    <h5 class="text-start mb-2">Tasks to do - {{ TaskList.length }}</h5>
     <SingleTask
-      v-for="(n, i) in Tasks"
+      v-for="(n, i) in TaskList"
       :key="n"
-      :title="Tasks[i].title"
-      :compelete="Tasks[i].compelete"
+      :title="TaskList[i].title"
+      :compelete="TaskList[i].compelete"
     />
   </div>
 </template>
@@ -13,14 +13,19 @@
 <script>
 import SingleTask from './SinlgeTask.vue'
 // import { ref } from 'vue'
-
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 export default {
   components: {
     SingleTask,
   },
-  props: ['Tasks'],
   setup() {
-    return {}
+    const store = useStore()
+    const TaskList = computed(() => {
+      return store.state.Tasks
+    })
+
+    return { TaskList }
   },
 }
 </script>
