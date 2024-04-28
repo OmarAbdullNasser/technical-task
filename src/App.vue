@@ -33,9 +33,9 @@
 <script>
 import TasksList from './components/TasksList.vue'
 import DoneList from './components/DoneList.vue'
+import { computed, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 
-import { ref } from 'vue'
 export default {
   name: 'App',
   components: {
@@ -47,11 +47,27 @@ export default {
     const store = useStore()
     const Task = ref('')
     function AddTask() {
-      store.commit('AddTask', {
-        title: Task.value.toString(),
-        compelete: false,
-      })
+      if (Task.value != '' || undefined) {
+        store.commit('AddTask', {
+          title: Task.value.toString(),
+          compelete: false,
+        })
+      }
+      Task.value = ''
     }
+    const x = computed(() => {
+      return store.state.Tasks
+    })
+
+    localStorage.setItem('Tasks', JSON.stringify(x.value))
+
+    watch(
+      x,
+      newValue => {
+        localStorage.setItem('Tasks', JSON.stringify(newValue))
+      },
+      { deep: true },
+    )
     return {
       Task,
       AddTask,

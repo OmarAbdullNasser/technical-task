@@ -13,7 +13,7 @@
 
 <script>
 import SingleTask from './SinlgeTask.vue'
-// import { ref } from 'vue'
+
 import { useStore } from 'vuex'
 import { computed } from 'vue'
 export default {
@@ -21,6 +21,7 @@ export default {
     SingleTask,
   },
   setup() {
+    
     const store = useStore()
     const TaskList = computed(() => {
       return store.state.Tasks
