@@ -47,10 +47,10 @@ export default {
     const store = useStore()
     const Task = ref('')
     function AddTask() {
-      store.commit(
-        'AddTask',
-        `{ title: ${Task.value.toString()}, compelete: false }`,
-      )
+      store.commit('AddTask', {
+        title: Task.value.toString(),
+        compelete: false,
+      })
     }
     return {
       Task,

@@ -6,6 +6,7 @@
       :key="n"
       :title="TaskList[i].title"
       :compelete="TaskList[i].compelete"
+      :id="TaskList[i].id"
     />
   </div>
 </template>

@@ -5,8 +5,8 @@
   >
     <p class="m-0 my-3 my-lg-0">{{ title }}</p>
     <div class="icons">
-      <font-awesome-icon icon="check" class="me-3" />
-      <font-awesome-icon icon="trash" />
+      <font-awesome-icon icon="check" class="me-3 x" @click="TaskIsDone" />
+      <font-awesome-icon icon="trash" class="x" @click="RemoveTask" />
     </div>
   </div>
 
@@ -21,14 +21,28 @@
 </template>
 
 <script>
+import { useStore } from 'vuex'
 export default {
   components: {},
   props: {
     title: String,
     compelete: Boolean,
+    id: Number,
   },
-  setup() {
-    // console.log(props.title, props.compelete)
+  setup(props) {
+    const store = useStore()
+
+    function RemoveTask() {
+      store.commit('DeleteTask', props.id)
+    }
+    function TaskIsDone() {
+      store.commit('TaskIsDone', props.id)
+    }
+
+    return {
+      RemoveTask,
+      TaskIsDone,
+    }
   },
 }
 </script>
@@ -41,5 +55,10 @@ export default {
 .Donetask {
   background-color: #15101c;
   color: inherit;
+}
+.icons {
+  .x {
+    cursor: pointer;
+  }
 }
 </style>
