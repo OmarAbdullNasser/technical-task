@@ -1,16 +1,39 @@
-//App
-$bg_darkColor: rgba(30, 30, 30, 0.5);
-$darkColor: rgba(29, 24, 37, 1);
-$mainColor: #9e78cf;
-$DoneColor: #78cfb0;
-body {
-  background-color: $bg_darkColor !important;
+* {
+  margin: 0;
+  padding: 0;
 }
+/*
+Dark Mode
+*/
+
+$bg-dark: rgba(30, 30, 30, 0.5);
+$bg_Task: rgba(44, 44, 44, 1);
+$bg_btn: #3caf55;
+$bg_input: #fff;
+$color_text: #000;
+$bgcontrallers_Dark: #fff;
+$Text_color: #d8dee9;
+$textwhite: rgb(24, 133, 42);
+
+$mainColor: #9e78cf;
+$MoonColor: rgba(29, 24, 37, 1);
+
+/*
+
+Light mood*/
+$bg-Light: #fff;
+$bgcontrallers_Light: #000;
+
+/*
+
+
+/*Dark mode*/
+//App
+
 .Home {
-  background-color: $darkColor;
-  color: white;
+  color: $Text_color;
   .Controllers {
-    background-color: white;
+    background-color: $bgcontrallers_Dark;
     width: 10%;
     svg {
       font-size: 3rem;
@@ -20,33 +43,35 @@ body {
       color: orange;
     }
     .fa-moon {
-      color: $darkColor;
+      color: $MoonColor;
     }
   }
   .TaskInput {
     ::placeholder {
-      color: #fff;
+      color: black;
     }
     input {
-      background-color: inherit;
+      background-color: $bg_input;
       border-color: $mainColor;
-      color: #fff;
+      color: $color_text;
+      font-size: 25px;
     }
     button {
-      background-color: $mainColor;
+      background-color: $bg_btn;
     }
   }
 }
 
 //TaskList
+.Tasks {
+  color: $color_text;
+}
 .task {
-  background-color: #15101c;
-  color: $mainColor;
+  background-color: $bg_dark;
+  color: $Text_color;
+  font-size: 25px;
 }
-.Donetask {
-  background-color: #15101c;
-  color: inherit;
-}
+
 .icons {
   .x {
     cursor: pointer;
@@ -55,9 +80,74 @@ body {
 
 //Done Comppent
 .DoneTasks {
-  color: $DoneColor;
+  color: #000;
   .Donetask {
-    background-color: #15101c;
-    color: inherit;
+    background-color: $textwhite;
+    color: #fff;
+    font-size: 25px;
   }
 }
+/*Dark Mode*/
+
+/*Lgiht Mode*/
+
+// body {
+//   background-color: $bg_darkColor !important;
+// }
+// .Home {
+//   background-color: $darkColor;
+//   color: white;
+//   .Controllers {
+//     background-color: white;
+//     width: 10%;
+//     svg {
+//       font-size: 3rem;
+//       color: #fff;
+//     }
+//     .fa-sun {
+//       color: orange;
+//     }
+//     .fa-moon {
+//       color: $darkColor;
+//     }
+//   }
+//   .TaskInput {
+//     ::placeholder {
+//       color: #fff;
+//     }
+//     input {
+//       background-color: inherit;
+//       border-color: $mainColor;
+//       color: #fff;
+//     }
+//     button {
+//       background-color: $mainColor;
+//     }
+//   }
+// }
+
+//TaskList
+// .task {
+//   background-color: #15101c;
+//   color: $mainColor;
+// }
+// .Donetask {
+//   background-color: #15101c;
+//   color: inherit;
+// }
+// .icons {
+//   .x {
+//     cursor: pointer;
+//   }
+// }
+
+// //Done Comppent
+// .DoneTasks {
+//   color: $DoneColor;
+//   .Donetask {
+//     background-color: #15101c;
+//     color: inherit;
+//   }
+// }
+
+/*Lgiht Mode*/

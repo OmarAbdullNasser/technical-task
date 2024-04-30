@@ -1,5 +1,5 @@
 <template>
-  <div class="Home m-5">
+  <div class="Home m-5" color-schema="isDark?'dark':'light'">
     <div class="container p-2">
       <div class="text-center rounded mx-auto my-5">
         <!--icons-->
@@ -15,6 +15,7 @@
             <font-awesome-icon icon="sun" />
           </button>
         </div>
+        
         <!--Input Form-->
         <div
           class="TaskInput d-flex justify-content-between flex-wrap flex-lg-nowrap my-3"
@@ -48,7 +49,7 @@ import TasksList from './components/TasksList.vue'
 import DoneList from './components/DoneList.vue'
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-
+import { useDark, useToggle } from '@vueuse/core'
 export default {
   name: 'App',
   components: {
@@ -59,6 +60,12 @@ export default {
   setup() {
     const store = useStore()
     const Task = ref('')
+    const isDark = useDark({
+      selector: 'body',
+      attribute: 'color-schema',
+      valueDark: 'dark',
+      valueLight: 'light',
+    })
 
     const Mood = computed(() => {
       return store.state.darkMode
@@ -74,9 +81,13 @@ export default {
       Task.value = ''
     }
 
-    const toggleMode = () => {
+    function toggleMode() {
       store.commit('toggleDarkMode')
+      console.log(Mood)
+      console.log()
+      useToggle(isDark)()
     }
+
     return {
       Task,
       AddTask,
@@ -87,4 +98,11 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+[color-schema='dark'] {
+  background-color: rgba(30, 30, 30, 0.5);
+}
+[color-schema='light'] {
+  background-color: #fff;
+}
+</style>
