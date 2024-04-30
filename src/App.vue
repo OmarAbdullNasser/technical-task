@@ -3,19 +3,41 @@
     <div class="container p-2">
       <div class="text-center rounded mx-auto my-5">
         <!--icons-->
-        <div
-          class="Controllers rounded-pill"
-          :class="{ 'text-end': Mood, 'text-start': !Mood }"
-        >
-          <button type="button" class="btn" v-if="!Mood" @click="toggleMode">
-            <font-awesome-icon icon="moon" />
-          </button>
+        <div class="d-flex justify-content-between">
+          <div
+            class="Controllers rounded-pill"
+            :class="{ 'text-end': Mood, 'text-start': !Mood }"
+          >
+            <button type="button" class="btn" v-if="!Mood" @click="toggleMode">
+              <font-awesome-icon icon="moon" />
+            </button>
 
-          <button type="button" class="btn" v-else @click="toggleMode">
-            <font-awesome-icon icon="sun" />
-          </button>
+            <button type="button" class="btn" v-else @click="toggleMode">
+              <font-awesome-icon icon="sun" />
+            </button>
+          </div>
+
+          <div class="filter d-flex align-items- p-3 rounded-pill">
+            <label>
+              <input
+                type="radio"
+                value="uncommpelet"
+                v-model="selectedOption"
+              />
+              Show Tasks
+            </label>
+            <label>
+              <input type="radio" value="compelete" v-model="selectedOption" />
+              Show Done Tasks
+            </label>
+            <label>
+              <input type="radio" value="both" v-model="selectedOption" /> Show
+              Show Both
+            </label>
+          </div>
+
+          
         </div>
-        
         <!--Input Form-->
         <div
           class="TaskInput d-flex justify-content-between flex-wrap flex-lg-nowrap my-3"
@@ -33,11 +55,15 @@
         <!--Input Form-->
 
         <!--List of uncomplete Tasks-->
-        <TasksList />
+        <TasksList
+          v-if="selectedOption === 'uncommpelet' || selectedOption === 'both'"
+        />
         <!--List of uncomplete Tasks-->
 
         <!--List of complete Tasks-->
-        <DoneList />
+        <DoneList
+          v-if="selectedOption === 'compelete' || selectedOption === 'both'"
+        />
         <!--List of complete Tasks-->
       </div>
     </div>
@@ -60,6 +86,10 @@ export default {
   setup() {
     const store = useStore()
     const Task = ref('')
+    const selectedOption = ref('both')
+ 
+ 
+
     const isDark = useDark({
       selector: 'body',
       attribute: 'color-schema',
@@ -70,7 +100,7 @@ export default {
     const Mood = computed(() => {
       return store.state.darkMode
     })
-
+  
     function AddTask() {
       if (Task.value != '' || undefined) {
         store.commit('AddTask', {
@@ -83,8 +113,6 @@ export default {
 
     function toggleMode() {
       store.commit('toggleDarkMode')
-      console.log(Mood)
-      console.log()
       useToggle(isDark)()
     }
 
@@ -93,6 +121,8 @@ export default {
       AddTask,
       toggleMode,
       Mood,
+      selectedOption,
+     
     }
   },
 }

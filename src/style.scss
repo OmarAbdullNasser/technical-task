@@ -46,6 +46,16 @@ $bgcontrallers_Light: #000;
       color: $MoonColor;
     }
   }
+  .filter {
+    background-color: $bgcontrallers_Dark;
+    gap: 10px;
+    color: #000;
+  }
+  .Sort {
+    background-color: $bgcontrallers_Dark;
+    gap: 10px;
+    color: #000;
+  }
   .TaskInput {
     ::placeholder {
       color: black;

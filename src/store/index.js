@@ -8,6 +8,7 @@ const store = createStore({
       Tasks: [],
       DoneTasks: [],
       darkMode: false,
+      sortBy: 'alpha',
     }
   },
   mutations: {
@@ -30,6 +31,7 @@ const store = createStore({
       state.darkMode = !state.darkMode
     },
   },
+
   plugins: [createPersistedState()],
 })
 

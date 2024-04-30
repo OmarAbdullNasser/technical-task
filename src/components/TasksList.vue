@@ -1,6 +1,20 @@
 <template>
   <div class="Tasks py-2">
-    <h5 class="text-start mb-2">Tasks to do - {{ TaskList.length }}</h5>
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="text-start mb-2">Tasks to do - {{ TaskList.length }}</h5>
+      <div class="Sort d-flex align-items- p-3 rounded-pill">
+        <label>
+          <input type="radio" value="alpha" v-model="sortBy" />
+          Sort Alphabetically
+        </label>
+        <label>
+          <input type="radio" value="numeric" v-model="sortBy" />
+          Sort Numerically
+        </label>
+        <!-- <button @click="sortByTitle">alpha</button>
+        <button @click="sortByNumericTitle">numeric</button> -->
+      </div>
+    </div>
     <SingleTask
       v-for="(n, i) in TaskList"
       :key="n"
@@ -15,19 +29,18 @@
 import SingleTask from './SinlgeTask.vue'
 
 import { useStore } from 'vuex'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 export default {
   components: {
     SingleTask,
   },
   setup() {
-    
     const store = useStore()
     const TaskList = computed(() => {
       return store.state.Tasks
     })
-
-    return { TaskList }
+    const sortBy = ref('alpha')
+    return { TaskList, sortBy }
   },
 }
 </script>
