@@ -1,0 +1,63 @@
+//App
+$bg_darkColor: rgba(30, 30, 30, 0.5);
+$darkColor: rgba(29, 24, 37, 1);
+$mainColor: #9e78cf;
+$DoneColor: #78cfb0;
+body {
+  background-color: $bg_darkColor !important;
+}
+.Home {
+  background-color: $darkColor;
+  color: white;
+  .Controllers {
+    background-color: white;
+    width: 10%;
+    svg {
+      font-size: 3rem;
+      color: #fff;
+    }
+    .fa-sun {
+      color: orange;
+    }
+    .fa-moon {
+      color: $darkColor;
+    }
+  }
+  .TaskInput {
+    ::placeholder {
+      color: #fff;
+    }
+    input {
+      background-color: inherit;
+      border-color: $mainColor;
+      color: #fff;
+    }
+    button {
+      background-color: $mainColor;
+    }
+  }
+}
+
+//TaskList
+.task {
+  background-color: #15101c;
+  color: $mainColor;
+}
+.Donetask {
+  background-color: #15101c;
+  color: inherit;
+}
+.icons {
+  .x {
+    cursor: pointer;
+  }
+}
+
+//Done Comppent
+.DoneTasks {
+  color: $DoneColor;
+  .Donetask {
+    background-color: #15101c;
+    color: inherit;
+  }
+}

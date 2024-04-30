@@ -31,11 +31,5 @@ export default {
 </script>
 
 <style lang="scss">
-.DoneTasks {
-  color: #78cfb0;
-  .Donetask {
-    background-color: #15101c;
-    color: inherit;
-  }
-}
+
 </style>

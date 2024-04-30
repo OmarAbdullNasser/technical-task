@@ -48,17 +48,5 @@ export default {
 </script>
 
 <style lang="scss">
-.task {
-  background-color: #15101c;
-  color: #9e78cf;
-}
-.Donetask {
-  background-color: #15101c;
-  color: inherit;
-}
-.icons {
-  .x {
-    cursor: pointer;
-  }
-}
+
 </style>

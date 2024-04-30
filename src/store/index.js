@@ -7,6 +7,7 @@ const store = createStore({
     return {
       Tasks: [],
       DoneTasks: [],
+      darkMode: false,
     }
   },
   mutations: {
@@ -23,6 +24,10 @@ const store = createStore({
       DoneTask.compelete = true
       state.DoneTasks.push(DoneTask)
       this.commit('DeleteTask', id)
+    },
+
+    toggleDarkMode(state) {
+      state.darkMode = !state.darkMode
     },
   },
   plugins: [createPersistedState()],
