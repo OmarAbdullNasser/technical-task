@@ -4,15 +4,21 @@
       <h5 class="text-start mb-2">Tasks to do - {{ TaskList.length }}</h5>
       <div class="Sort d-flex align-items- p-3 rounded-pill">
         <label>
-          <input type="radio" value="alpha" v-model="sortBy" />
+          <input
+            type="radio"
+            value="alpha"
+            v-model="sortBy"
+            @click="sortByTitle"
+          />
           Sort Alphabetically
-        </label>
-        <label>
-          <input type="radio" value="numeric" v-model="sortBy" />
+          <input
+            type="radio"
+            value="numeric"
+            v-model="sortBy"
+            @click="sortByNumeric"
+          />
           Sort Numerically
         </label>
-        <!-- <button @click="sortByTitle">alpha</button>
-        <button @click="sortByNumericTitle">numeric</button> -->
       </div>
     </div>
     <SingleTask
@@ -40,7 +46,17 @@ export default {
       return store.state.Tasks
     })
     const sortBy = ref('alpha')
-    return { TaskList, sortBy }
+
+    console.log(sortBy.value)
+
+    const sortByTitle = () => {
+      store.commit('sortByTitle')
+    }
+
+    const sortByNumeric = () => {
+      store.commit('sortByNumeric')
+    }
+    return { TaskList, sortBy, sortByTitle, sortByNumeric }
   },
 }
 </script>

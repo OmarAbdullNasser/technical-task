@@ -8,7 +8,6 @@ const store = createStore({
       Tasks: [],
       DoneTasks: [],
       darkMode: false,
-      sortBy: 'alpha',
     }
   },
   mutations: {
@@ -29,6 +28,29 @@ const store = createStore({
 
     toggleDarkMode(state) {
       state.darkMode = !state.darkMode
+    },
+
+    sortByTitle(state) {
+      state.Tasks.sort((a, b) => {
+        const titleA = a.title.toLowerCase()
+        const titleB = b.title.toLowerCase()
+        if (titleA < titleB) {
+          return -1
+        }
+        if (titleA > titleB) {
+          return 1
+        }
+        return 0
+      })
+    },
+
+    sortByNumeric(state) {
+      console.log('this from  vuex')
+      state.Tasks.sort((a, b) => {
+        const numA = parseFloat(a.title)
+        const numB = parseFloat(b.title)
+        return numA - numB
+      })
     },
   },
 
